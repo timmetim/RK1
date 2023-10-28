@@ -1,0 +1,47 @@
+class Music:
+    """Музыкальное произведение"""
+
+    def __init__(self, id, name, author):
+        self.id = id
+        self.name = name
+        self.author = author
+
+
+class Orchestre:
+    """Оркестр"""
+
+    def __init__(self, id, name, music):
+        self.id = id
+        self.name = name
+        self.music = music
+# Музыка
+musics = [
+    Music(1, 'Лунная соната', 'Людвиг Ван Бетховен'),
+    Music(2, 'Турецкий марш', 'Вольфганг Амадей Моцарт'),
+    Music(3, 'Аве Мария', 'Франц Шуберт'),
+    Music(4, 'Фантазия-экспромт', 'Фредерик Шопен'),
+    Music(5, 'Полёт шмеля', 'Николай Римский-Корсаков'),
+]
+# Отделы
+orches = [
+    Orchestre(1, 'Симфонический оркестр Белгородской филармонии', [musics[0], musics[1], musics[4]]),
+    Orchestre(2, 'Тихоокеанский симфонический оркестр', [musics[3]]),
+    Orchestre(3, 'Воронежский академический симфонический оркестр', [musics[3], musics[2]]),
+
+    Orchestre(4, 'Уральский академический филармонический оркестр', [musics[1],musics[4]]),
+    Orchestre(5, 'Уральский молодежный симфонический оркестр', [musics[2]]),
+    Orchestre(6, 'Губернаторский симфонический оркестр Иркутской филармонии', [musics[0]]),
+]
+# Запросы
+print("Задание Б1")
+music_orchestre = [(orche.name, music.name) for orche in orches for music in orche.music]
+music_orchestre_sorted = sorted(music_orchestre, key=lambda x: x[1])
+print("Список всех связанных книг и книжных магазинов, отсортированный по книгам:")
+for item in music_orchestre_sorted:
+    print(f"Музыка '{item[1]}' в Оркестре '{item[0]}'")
+print("Задание Б2")
+music_orchestre_count = [(orche.name, len(orche.music)) for orche in orches]
+music_orchestre_count_sorted = sorted(music_orchestre_count, key=lambda x: x[1], reverse=True)
+print("Список книжных магазинов с количеством книг в каждом магазине:")
+for item in music_orchestre_count_sorted:
+    print(f"Оркестр '{item[0]}': {item[1]}  количество произведений")
