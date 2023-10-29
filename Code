@@ -36,12 +36,22 @@ orches = [
 print("Задание Б1")
 music_orchestre = [(orche.name, music.name) for orche in orches for music in orche.music]
 music_orchestre_sorted = sorted(music_orchestre, key=lambda x: x[1])
-print("Список всех связанных книг и книжных магазинов, отсортированный по книгам:")
+print("Список всех музыкальных происведений и оркестров, отсортированный по произведениям:")
 for item in music_orchestre_sorted:
     print(f"Музыка '{item[1]}' в Оркестре '{item[0]}'")
 print("Задание Б2")
 music_orchestre_count = [(orche.name, len(orche.music)) for orche in orches]
 music_orchestre_count_sorted = sorted(music_orchestre_count, key=lambda x: x[1], reverse=True)
-print("Список книжных магазинов с количеством книг в каждом магазине:")
+print("Список оркестров с количеством музыкальных произведний в каждом оркестре:")
 for item in music_orchestre_count_sorted:
     print(f"Оркестр '{item[0]}': {item[1]}  количество произведений")
+print("Задание Б3")
+musics_with_ya = [music for music in musics if music.name.endswith("я")]
+orche_with_ya_musics = [(orche.name, music.name) for orche in orches for music in orche.music if music in musics_with_ya]
+print("Список всех музыкальных произведений, у которых название заканчивается на 'я', и окестры, которые их исполняют:")
+for item in orche_with_ya_musics:
+    print(f"Произведение '{item[1]}' в оркестре '{item[0]}'")
+
+
+
+
